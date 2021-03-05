@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Book Search App</string>
+    <string name="application_icon">Application icon</string>
+    <string name="enter_book_name">Enter Book Name</string>
+    <string name="search">search</string>
+    <string name="no_date">no date</string>
+    <string name="no_info">no info</string>
+    <string name="loading">Loading...</string>
+</resources>
