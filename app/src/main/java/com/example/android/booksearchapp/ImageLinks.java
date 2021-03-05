@@ -9,4 +9,6 @@ public class ImageLinks {
 
     @SerializedName("thumbnail")
     public String thumbnail;
+
+
 }

@@ -21,7 +21,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     private List<Book> bookList;
     private OnItemClickListener onItemClickListener;
 
-
     public interface OnItemClickListener {
         void onItemClick(Book book);
     }
@@ -53,11 +52,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             holder.authors.setText(R.string.no_info);
         }
 
-        holder.bookPublishedDate.setText("Published date: " + book.volumeInfo.publishedDate);
+        if (book.volumeInfo.publishedDate != null) {
+            holder.bookPublishedDate.setText("Published date: " + book.volumeInfo.publishedDate);
+        } else {
+            holder.bookPublishedDate.setText(R.string.no_info);
+        }
+
         if (book.volumeInfo.pageCount != 0) {
             holder.pageCount.setText(book.volumeInfo.pageCount + " pages");
         } else {
-            holder.pageCount.setText("N/A");
+            holder.pageCount.setText(R.string.no_info);
         }
 
         holder.rating.setRating(Float.parseFloat(String.valueOf(book.volumeInfo.averageRating)));
@@ -65,11 +69,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         if (book.volumeInfo.imageLinks == null) {
             Glide.with(holder.imageView.getContext())
-                    .load(R.drawable.book)
+                    .load(R.drawable.baseline_image_not_supported_black_48)
                     .into(holder.imageView);
         } else {
             Glide.with(holder.imageView.getContext())
-                    .load(book.volumeInfo.imageLinks)
+                    .load(book.volumeInfo.imageLinks.thumbnail)
                     .into(holder.imageView);
         }
 

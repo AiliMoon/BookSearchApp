@@ -1,6 +1,8 @@
 package com.example.android.booksearchapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +11,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -41,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         customAdapter = new CustomAdapter(clickListener);
         recyclerView.setAdapter(customAdapter);
-        searchButton.setOnClickListener(v -> service
-                .getBooks(inputTitleBookEditText.getText().toString(), max_results)
+        searchButton.setOnClickListener((View v) ->
+                service.getBooks(inputTitleBookEditText.getText().toString(), max_results)
                 .enqueue(new Callback<Items>() {
                     @Override
                     public void onResponse(@NonNull Call<Items> call, @NonNull Response<Items> response) {
